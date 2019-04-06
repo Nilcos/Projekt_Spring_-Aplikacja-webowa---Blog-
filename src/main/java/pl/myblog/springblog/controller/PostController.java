@@ -14,6 +14,7 @@ import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.service.CommentService;
 import pl.myblog.springblog.service.PostService;
+import pl.myblog.springblog.service.SubjectService;
 import pl.myblog.springblog.service.UserService;
 
 import javax.validation.Valid;
@@ -30,6 +31,9 @@ public class PostController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    SubjectService subjectService;
 
     @Autowired
     public PostController(UserService userService) {
@@ -55,6 +59,8 @@ public class PostController {
 
     @GetMapping("/addpost")
     public String addPost(Model model, Authentication auth) {
+
+        model.addAttribute("subject",subjectService.getAllCourses());
         model.addAttribute("auth", auth);
         model.addAttribute("post", new Post());
         model.addAttribute("postAdding", true);

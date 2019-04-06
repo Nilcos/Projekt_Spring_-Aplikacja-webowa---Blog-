@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
 
     <title>Post</title>
 
@@ -97,20 +98,24 @@
 
 </p>
 
-<p th:align="center">
+
 
 <h1 th:align="center">Add Comment</h1>
 
+<div class="content">
+
+    <div id='container'>
+
 <form th:align="center" th:action="@{'/savecomment/'+${post.id}}" method="post" th:object="${comment}">
 
-    <label for="content">Content: </label>
-    <textarea id="content" cols="50" rows="10" th:field="*{userComment}"></textarea><br><br>
+
+    <input type="text" id="comment"  th:field="*{userComment}" placeholder="Enter the comment"><br><br>
 
     <input id="id" type="hidden" th:field="*{id}">
 
-    <label >Name: </label>
-    <input th:if="${auth != null}" th:value="${auth.getPrincipal().getUsername()} " th:name="name" readonly >
-    <input th:if="${auth == null}"  th:field="*{name}"  >
+
+    <input th:if="${auth != null}" th:value="${auth.getPrincipal().getUsername()} " th:name="name" readonly type="text">
+    <input th:if="${auth == null}"  th:field="*{name}" type="text"  placeholder="Enter your name">
 
 
     <br><br>
@@ -125,9 +130,11 @@
 
 
 </form>
+    </div>
+</div>
 <!--<h1 th:text="${auth.getPrincipal().getUsername()}"></h1>-->
 
-</p>
+
 
 
 
