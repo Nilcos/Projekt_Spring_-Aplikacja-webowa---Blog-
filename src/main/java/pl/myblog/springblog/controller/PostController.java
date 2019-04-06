@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.service.CommentService;
 import pl.myblog.springblog.service.PostService;
@@ -90,7 +91,6 @@ public class PostController {
 
     @GetMapping("/edit-post/{id}")
     public String editPost(@PathVariable long id, Model model) {
-
         Optional<Post> post = postService.getOnePost(id);
         model.addAttribute("post", post.get());
         return "post";
@@ -104,9 +104,33 @@ public class PostController {
     }
 
     @GetMapping("/delete-comment/{id}")
-    public String deleteComment(@PathVariable long id, Model model) {
-        model.addAttribute("post", postService.getPost(id));
-        model.addAttribute("commentList", commentService.getAllComment(id));
-        return "post";
+    public String deleteComment(@PathVariable long id) {
+        Post post = commentService.getPostByCommentId(id);
+        commentService.deleteComment(id);
+//        model.addAttribute("post", post);
+//        model.addAttribute("commentList", commentService.getAllComment(id));
+        return "redirect:/show-post/" + post.getId();
+    }
+
+    @GetMapping("/edit-comment/{id}")
+    public String editComment(@PathVariable long id, Model model) {
+        Post post = commentService.getPostByCommentId(id);
+        model.addAttribute("comment", commentService.getComment(id));
+        return "redirect:/show-post/" + post.getId();
+    }
+
+    @PostMapping("/save-comment")
+    public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+            model.addAttribute("post", new Comment());
+            return "post";
+        } else {
+            postService.addToDB(post);
+            model.addAttribute("commentList", postService.getAllPosts());
+            return "index";
+        }
     }
 }
