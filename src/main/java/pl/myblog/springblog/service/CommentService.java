@@ -16,8 +16,8 @@ public class CommentService {
     private CommentRepository commentRepository;
 
 
-    public List<Comment> getAllComment(Long id) {
-        return commentRepository.findAllByPostIdOrderByDateDesc(id);
+    public List<Comment> getAllCommentbyPostId(Post post) {
+        return commentRepository.findAllByPostIdOrderByDateDesc(post);
     }
 
 

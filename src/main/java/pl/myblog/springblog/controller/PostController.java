@@ -100,8 +100,12 @@ public class PostController {
 
     @GetMapping("/show-post/{id}")
     public String showPost(@PathVariable long id, Model model) {
-        model.addAttribute("post", postService.getPost(id));
-        model.addAttribute("commentList", commentService.getAllComment(id));
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+
+        model.addAttribute("commentList",commentService.getAllCommentbyPostId(post));
+//        model.addAttribute("commentNew", new Comment());
+//        model.addAttribute("commentList", commentService.getAllComment(id));
         return "post";
     }
 
