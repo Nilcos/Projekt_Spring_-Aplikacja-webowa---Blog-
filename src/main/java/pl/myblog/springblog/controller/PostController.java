@@ -97,6 +97,7 @@ public class PostController {
     @GetMapping("/show-post/{id}")
     public String showPost(@PathVariable long id, Model model) {
         model.addAttribute("post", postService.getPost(id));
+        model.addAttribute("commentList", commentService.getAllComment(id));
         return "index";
     }
 }
