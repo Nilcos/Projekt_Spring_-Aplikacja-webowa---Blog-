@@ -2,10 +2,7 @@ package pl.myblog.springblog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.repository.CommentRepository;
-
-import java.util.List;
 
 @Service
 public class CommentService {
@@ -16,9 +13,9 @@ public class CommentService {
 
 
 
-    public List<Comment> getAllComment() {
-        return commentRepository.findAllByOrderByDateDesc();
-    }
+//    public List<Comment> getAllComment(Long id) {
+//        return commentRepository.findAllByPostIdNotNullOrderByDateDesc(id);
+//    }
 
 //
 //    public Optional<Comment> getOneCourse(long id) {
