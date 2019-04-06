@@ -3,6 +3,7 @@ package pl.myblog.springblog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.Comment;
+import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.repository.CommentRepository;
 
 import java.util.List;
@@ -42,6 +43,10 @@ public class CommentService {
 
     public void updateDB(Comment comment) {
         commentRepository.save(comment);
+    }
+
+    public Post getPostByCommentId (long id) {
+        return commentRepository.getOne(id).getPostId();
     }
 
 
