@@ -87,10 +87,25 @@
     </tr>
     <tr th:each="post : ${getAllPosts}">
 
-      <td th:text="${post.title}"></td>
+     <!--<td  th:text="${post.title}"></td>-->
+
+      <td>
+
+        <a th:href="'/show-post/' +${post.id}"
+           th:text="${post.title}"></a>
+      </td>
+
+
+
+     <!--<td> <a th:href="/admin/kursy/detale/" > aaaa</a>-->
+
+
+     <!--</td>-->
+
 
     </tr>
   </table>
+
 
 
 
