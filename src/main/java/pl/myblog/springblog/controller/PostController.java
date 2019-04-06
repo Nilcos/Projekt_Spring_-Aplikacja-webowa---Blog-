@@ -76,6 +76,7 @@ public class PostController {
             return "add-post";
         } else {
             postService.addToDB(post);
+            model.addAttribute("postList", postService.getAllPosts());
             return "index";
         }
     }
@@ -83,6 +84,7 @@ public class PostController {
     @GetMapping("/delete-post/{id}")
     public String deletePost(@PathVariable long id, Model model) {
         postService.deletePost(id);
+        model.addAttribute("postList", postService.getAllPosts());
         return "index";
     }
 
@@ -91,13 +93,20 @@ public class PostController {
 
         Optional<Post> post = postService.getOnePost(id);
         model.addAttribute("post", post.get());
-        return "index";
+        return "post";
     }
 
     @GetMapping("/show-post/{id}")
     public String showPost(@PathVariable long id, Model model) {
         model.addAttribute("post", postService.getPost(id));
         model.addAttribute("commentList", commentService.getAllComment(id));
-        return "index";
+        return "post";
+    }
+
+    @GetMapping("/delete-comment/{id}")
+    public String deleteComment(@PathVariable long id, Model model) {
+        model.addAttribute("post", postService.getPost(id));
+        model.addAttribute("commentList", commentService.getAllComment(id));
+        return "post";
     }
 }
