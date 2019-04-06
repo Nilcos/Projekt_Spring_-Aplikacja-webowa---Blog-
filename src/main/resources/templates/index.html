@@ -78,31 +78,16 @@
   <h1 th:align="center">Available posts: </h1>
   <p>
 
-
-
-
-  <table id="tabelaFormat" border="solid">
+  <table th:class="table">
     <tr>
-      <th> Title</th>
+      <th>Title:</th>
+
     </tr>
     <tr th:each="post : ${getAllPosts}">
-<<<<<<< HEAD
-      <td><span th:text="${post.title}"></span></td>
-=======
-
-      <td th:text="${post.title}"></td>
->>>>>>> 1c45e1811ce6bbc754adeaea0db3a9150e888596
-
+      <td><span th:text="${post.title}"></span>
+      </td>
     </tr>
   </table>
-
-
-
-
-
-
-
-
 
   </p>
   <h1 th:align="center">Bag of categories</h1>
@@ -110,10 +95,6 @@
   <h1 th:align="center">Recent posts</h1>
   <p>...</p>
   <hr>
-
-
-
-
 
   <!-- Footer -->
   <footer>
