@@ -26,6 +26,8 @@ public class Post {
     @NotEmpty(message = "Pole wymaga ciągu znaków!")
     private String content;
 
+
+
     @NotEmpty(message = "Tytuł wymaga znakow!")
     private String title;
 

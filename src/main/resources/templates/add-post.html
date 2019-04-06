@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>post</title>
+    <title>Addpost</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -86,7 +86,7 @@
 <textarea id="content" cols="50" rows="10" th:field="*{content}"></textarea><br><br>
 
     <span th:text="${auth.getPrincipal().getUsername()}"></span><br><br>
-
+    <input id="id" type="hidden" th:field="*{id}">
 
 <input type="hidden" th:field="*{id}"/>
 <input type="submit" value="send"/><br><br>

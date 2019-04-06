@@ -140,11 +140,10 @@ public class PostController {
         }
 
         Post post = postService.getPost(id);
-        model.addAttribute("post", post);
 
+        model.addAttribute("post", post);
         model.addAttribute("commentList",commentService.getAllCommentbyPostId(post));
-//        model.addAttribute("commentNew", new Comment());
-//        model.addAttribute("commentList", commentService.getAllComment(id));
+        model.addAttribute("comment", new Comment());
         return "post";
     }
 
@@ -184,8 +183,8 @@ public class PostController {
         return "redirect:/show-post/" + post.getId();
     }
 
-    @PostMapping("/save-comment")
-    public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
+    @PostMapping("/savecomment/{id}")
+    public String saveComment(@Valid @ModelAttribute Comment comment, BindingResult result, Model model, @PathVariable long id, Authentication auth) {
 
         model.addAttribute("auth", auth);
 
@@ -195,16 +194,24 @@ public class PostController {
         } else {
             model.addAttribute("isAdmin", false);
         }
-
+        Post post = postService.getPost(id);
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
-            model.addAttribute("post", new Comment());
+
+
+            model.addAttribute("post", post);
+            model.addAttribute("commentList",commentService.getAllCommentbyPostId(post));
+            model.addAttribute("commentNew", new Comment());
+
+            System.out.println("TO SIE WYSWIETLA");
             return "post";
         } else {
-            postService.addToDB(post, userService.getUserById(auth));
-            model.addAttribute("commentList", postService.getAllPosts());
-            return "index";
+
+
+            commentService.addToDB(comment);
+
+            return "redirect:/show-post/"+ post.getId();
         }
     }
 }
