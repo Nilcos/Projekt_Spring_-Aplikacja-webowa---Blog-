@@ -85,8 +85,10 @@
 <label for="content">Content: </label>
 <textarea id="content" cols="50" rows="10" th:field="*{content}"></textarea><br><br>
 
+<input id="user" type="text" th:text="${auth.getPrincipal().getUsername()}"/><br><br>
 
 
+<input type="hidden" th:field="*{id}"/>
 <input type="submit" value="send"/><br><br>
 <input type="reset" value="clear"><br><br>
 </form>
