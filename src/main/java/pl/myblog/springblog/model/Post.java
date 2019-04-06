@@ -26,7 +26,9 @@ public class Post {
     @NotEmpty(message = "Pole wymaga ciągu znaków!")
     private String content;
 
-
+    @OneToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
     @NotEmpty(message = "Tytuł wymaga znakow!")
     private String title;

@@ -35,7 +35,7 @@ public class ContactController {
             return "contactForm";
         } else {
             contactService.addToDB(contact);
-            return "index";
+            return "redirect:/";
         }
 
 
