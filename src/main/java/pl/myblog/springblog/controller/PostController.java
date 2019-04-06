@@ -88,7 +88,7 @@ public class PostController {
         } else {
 
             postService.addToDB(post, userService.getUserById(auth));
-            model.addAttribute("postList", postService.getAllPosts());
+            model.addAttribute("getAllPosts", postService.getAllPosts());
             return "index";
         }
     }
