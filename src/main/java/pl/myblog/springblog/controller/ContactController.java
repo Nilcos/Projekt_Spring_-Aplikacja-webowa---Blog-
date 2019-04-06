@@ -27,7 +27,7 @@ public class ContactController {
     }
 
     @PostMapping("/send")
-    public String sendMessage(@Valid @ModelAttribute Contact contact, BindingResult result, Model model) {
+    public String send(@Valid @ModelAttribute Contact contact, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
