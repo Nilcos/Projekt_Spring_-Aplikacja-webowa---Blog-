@@ -99,7 +99,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/delete-post/{id}")
+    @GetMapping("/deletepost/{id}")
     public String deletePost(@PathVariable long id, Model model, Authentication auth) {
 
         model.addAttribute("auth", auth);
@@ -112,8 +112,8 @@ public class PostController {
         }
 
         postService.deletePost(id);
-        model.addAttribute("postList", postService.getAllPosts());
-        return "index";
+        model.addAttribute("getAllPosts", postService.getAllPosts());
+        return "redirect:/";
     }
 
     @GetMapping("/edit-post/{id}")

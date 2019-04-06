@@ -83,18 +83,36 @@
 <h1 th:align="center">Available posts: </h1>
 <p>
 
-<table th:align="center" id="tabelaFormat" >
-
-
-    <tr th:each="post : ${getAllPosts}">
+<table id="tabelaFormat" border="solid">
+  <tr>
+    <th> Title</th>
+    <th> Date</th>
+    <!--<th> Subject</th>-->
+    <th> Author</th>
+  </tr>
+  <tr th:each="post : ${getAllPosts}">
 
         <!--<td  th:text="${post.title}"></td>-->
 
-        <td>
+    <td>
 
-            <a th:href="'/show-post/' +${post.id}"
+      <a th:href="'/show-post/' +${post.id}"
                th:text="${post.title}"></a>
-        </td>
+    </td>
+    <td>
+      <span th:text="${post.date}"></span>
+    </td>
+    <!--<td>-->
+      <!--<span th:text="${post.category}"></span>-->
+    <!--</td>-->
+    <td>
+      <span th:text="${post.user.name} + ' ' + ${post.user.lastname}"></span>
+    </td>
+    <td>
+      <a th:href="@{'/editpost/' + ${post.id}}" method="get">Edit</a>
+      <a th:href="@{'/deletepost/' + ${post.id}}" method="get">Delete</a>
+    </td>
+
 
 
     </tr>
