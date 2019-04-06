@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.service.PostService;
@@ -15,6 +16,7 @@ import pl.myblog.springblog.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -69,5 +71,18 @@ public class PostController {
             postService.addToDB(post);
             return "index";
         }
+    }
+
+    @GetMapping("/delete-post/{id}")
+    public String deletePost(@PathVariable long id, Model model) {
+        postService.deletePost(id);
+        return "index";
+    }
+
+    @GetMapping("/edit-post/{id}")
+    public String editPost(@PathVariable long id, Model model) {
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "index";
     }
 }
