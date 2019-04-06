@@ -88,6 +88,7 @@ input[type=reset]:hover
 }
 
 #tabelaFormat {
+    width: 80%;
     margin-top: 50px;
     margin-left:auto;
     margin-right:auto;
