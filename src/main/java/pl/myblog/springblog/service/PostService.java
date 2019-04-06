@@ -48,6 +48,9 @@ public class PostService {
     }
 
 
+    public void addEditedToDB(Post post) {
+        postRepository.save(post);
+    }
 
 
 

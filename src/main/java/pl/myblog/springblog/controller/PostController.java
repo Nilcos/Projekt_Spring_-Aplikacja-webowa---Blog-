@@ -57,6 +57,7 @@ public class PostController {
     public String addPost(Model model, Authentication auth) {
         model.addAttribute("auth", auth);
         model.addAttribute("post", new Post());
+        model.addAttribute("postAdding", true);
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
             model.addAttribute("user", userService.getUserById(auth));
@@ -72,6 +73,7 @@ public class PostController {
     public String savePost(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
 
         model.addAttribute("auth", auth);
+        model.addAttribute("postAdded", true);
 
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
@@ -88,6 +90,29 @@ public class PostController {
         } else {
 
             postService.addToDB(post, userService.getUserById(auth));
+            model.addAttribute("getAllPosts", postService.getAllPosts());
+            return "index";
+        }
+    }
+
+    @PostMapping("/saveeditedpost")
+    public String saveEditedPost(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+            return "add-post";
+        } else {
+            postService.addEditedToDB(post);
             model.addAttribute("getAllPosts", postService.getAllPosts());
             return "index";
         }
@@ -110,10 +135,11 @@ public class PostController {
         return "redirect:/";
     }
 
-    @GetMapping("/edit-post/{id}")
+    @GetMapping("/editpost/{id}")
     public String editPost(@PathVariable long id, Model model, Authentication auth) {
 
         model.addAttribute("auth", auth);
+        model.addAttribute("postEditing", true);
 
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
@@ -124,7 +150,7 @@ public class PostController {
 
         Optional<Post> post = postService.getOnePost(id);
         model.addAttribute("post", post.get());
-        return "post";
+        return "add-post";
     }
 
     @GetMapping("/show-post/{id}")
