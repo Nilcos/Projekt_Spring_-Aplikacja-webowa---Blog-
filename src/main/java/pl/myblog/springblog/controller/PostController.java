@@ -119,9 +119,10 @@ public class PostController {
         return "redirect:/show-post/" + post.getId();
     }
 
-    @PostMapping("/save-comment")
-    public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model) {
+    @PostMapping("/save-comment/{id}")
+    public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model, long id) {
 
+        Post post = commentService.getPostByCommentId(id);
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
