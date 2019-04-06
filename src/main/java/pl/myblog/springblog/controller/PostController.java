@@ -36,6 +36,7 @@ public class PostController {
         this.userService = userService;
     }
 
+
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
         model.addAttribute("auth", auth);
