@@ -77,7 +77,7 @@
 <!-- Main Content -->
 <p>
 
-<form th:action="@{/contact}" method="post" th:object="${contact}">
+<form th:action="@{/send}" method="post" th:object="${contact}">
 
 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Podaj e-mail</p>
 <label for="email">e-mail: </label>
