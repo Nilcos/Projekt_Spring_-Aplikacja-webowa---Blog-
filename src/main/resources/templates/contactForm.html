@@ -78,6 +78,19 @@
 <h1 th:align="center">Recent posts</h1>
 <p>
 
+<form th:action="@{/contact}" method="post" th:object="${contact}">
+
+<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Podaj e-mail</p>
+<label for="email">E-mail: </label>
+<input id="email" type="text" th:field="*{email}"/><br><br>
+
+<p th:if="${#fields.hasErrors('message')}" th:errors="*{message}">Wpisz wiadomość: </p>
+<label for="message">Wiadomość: </label>
+<textarea id="message" cols="50" rows="10" th:field="*{message}"></textarea><br><br>
+
+<input type="submit" value="wyslij"/><br><br>
+<input type="reset" value="wyczyść"><br><br>
+</form>
 
 
 </p>
