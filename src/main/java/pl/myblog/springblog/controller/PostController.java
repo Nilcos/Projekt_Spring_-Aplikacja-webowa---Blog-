@@ -53,7 +53,7 @@ public class PostController {
 
     }
 
-    @GetMapping("/add-post")
+    @GetMapping("/addpost")
     public String addPost(Model model, Authentication auth) {
         model.addAttribute("auth", auth);
         model.addAttribute("post", new Post());
@@ -68,7 +68,7 @@ public class PostController {
 
     }
 
-    @PostMapping("/save-post")
+    @PostMapping("/savepost")
     public String savePost(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
 
         model.addAttribute("auth", auth);

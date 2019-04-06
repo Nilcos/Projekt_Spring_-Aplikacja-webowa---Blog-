@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
@@ -27,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // .antMatchers(/url) -> wymaga autoryzacji
                 // .hasAnyAuthority("uprawnienie") -> dla określonego uprawnienia
                 .antMatchers("/deletepost/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .antMatchers("/add-post").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/addpost").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/updatepost/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/admin").hasAnyAuthority( "ROLE_ADMIN")
                 // pozostałe URL udostępnij dla każdego
