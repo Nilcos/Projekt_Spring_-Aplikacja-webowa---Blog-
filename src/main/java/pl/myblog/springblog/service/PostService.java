@@ -20,7 +20,7 @@ public class PostService {
     }
 
 
-    public Optional<Post> getOneCourse(long id) {
+    public Optional<Post> getOnePost(long id) {
 
         return postRepository.findById(id);
     }
