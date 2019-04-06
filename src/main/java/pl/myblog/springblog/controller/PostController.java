@@ -88,4 +88,11 @@ public class PostController {
         model.addAttribute("post", post);
         return "index";
     }
+
+    @GetMapping("/show-post/{id}")
+    public String showPost(@PathVariable long id, Model model) {
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "index";
+    }
 }

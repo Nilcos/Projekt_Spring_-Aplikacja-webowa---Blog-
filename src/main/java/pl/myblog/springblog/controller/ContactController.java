@@ -32,7 +32,7 @@ public class ContactController {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
             model.addAttribute("contact", new Contact());
-            return "index";
+            return "contactForm";
         } else {
             contactService.addToDB(contact);
             return "index";
