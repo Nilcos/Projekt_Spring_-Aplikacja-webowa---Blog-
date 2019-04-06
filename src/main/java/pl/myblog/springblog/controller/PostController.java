@@ -58,7 +58,7 @@ public class PostController {
     }
 
     @PostMapping("/save-post")
-    public String saveCourse(@Valid @ModelAttribute Post post, BindingResult result, Model model) {
+    public String savePost(@Valid @ModelAttribute Post post, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
