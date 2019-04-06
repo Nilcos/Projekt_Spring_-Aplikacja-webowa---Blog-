@@ -77,16 +77,18 @@
 <!-- Main Content -->
 <p>
 
-<borm th:action="@{/save-post}" method="post" th:object="${post}">
+<form th:action="@{/save-post}" method="post" th:object="${post}">
 
 <label for="title">Title: </label>
 <input id="title" type="text" th:field="*{title}"/><br><br>
 
 <label for="content">Content: </label>
 <textarea id="content" cols="50" rows="10" th:field="*{content}"></textarea><br><br>
-<span th:text="${auth.getPrincipal().getUsername()}"></span><br><br>
 
-<input type="hidden" th:field="*{id}"/>
+    <span th:text="${auth.getPrincipal().getUsername()}"></span><br><br>
+
+
+<input type="hidden" th:field="${auth.getPrincipal().getUsername()}"/>
 <input type="submit" value="send"/><br><br>
 <input type="reset" value="clear"><br><br>
 </form>
