@@ -69,7 +69,7 @@ public class PostController {
     }
 
     @PostMapping("/save-post")
-    public String savePost(@Valid @ModelAttribute Post post, BindingResult result, Model model) {
+    public String savePost(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
 
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
@@ -77,7 +77,8 @@ public class PostController {
             model.addAttribute("post", new Post());
             return "add-post";
         } else {
-            postService.addToDB(post);
+
+            postService.addToDB(post, userService.getUserById(auth));
             model.addAttribute("postList", postService.getAllPosts());
             return "index";
         }
@@ -121,7 +122,7 @@ public class PostController {
     }
 
     @PostMapping("/save-comment")
-    public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model) {
+    public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
 
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
@@ -129,7 +130,7 @@ public class PostController {
             model.addAttribute("post", new Comment());
             return "post";
         } else {
-            postService.addToDB(post);
+            postService.addToDB(post, userService.getUserById(auth));
             model.addAttribute("commentList", postService.getAllPosts());
             return "index";
         }

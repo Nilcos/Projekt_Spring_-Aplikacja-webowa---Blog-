@@ -3,8 +3,10 @@ package pl.myblog.springblog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.Post;
+import pl.myblog.springblog.model.User;
 import pl.myblog.springblog.repository.PostRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +37,9 @@ public class PostService {
     }
 
 
-    public void addToDB(Post post) {
-
+    public void addToDB(Post post, User user) {
+        post.setUser(user);
+        post.setDate(LocalDateTime.now());
         postRepository.save(post);
     }
 

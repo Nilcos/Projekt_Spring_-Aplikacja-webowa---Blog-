@@ -88,7 +88,7 @@
     <span th:text="${auth.getPrincipal().getUsername()}"></span><br><br>
 
 
-<input type="hidden" th:field="${auth.getPrincipal().getUsername()}"/>
+<input type="hidden" th:field="*{id}"/>
 <input type="submit" value="send"/><br><br>
 <input type="reset" value="clear"><br><br>
 </form>
