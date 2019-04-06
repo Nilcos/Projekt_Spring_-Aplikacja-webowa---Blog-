@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -25,6 +26,8 @@ public class Post {
 
     @NotEmpty(message = "Pole wymaga ciągu znaków!")
     private String content;
+
+    private LocalDateTime date;
 
 
 }
