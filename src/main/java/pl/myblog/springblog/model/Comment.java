@@ -34,8 +34,8 @@ public class Comment {
     @Column(name = "userUnloggedName")
     private String name;
 
-    @Column(name = "postId")
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "post_id")
     private Post postId;
 
 
