@@ -78,14 +78,28 @@
   <h1 th:align="center">Available posts: </h1>
   <p>
 
-  <table th:class="table">
+  <table id="tabelaFormat" border="solid">
     <tr>
-      <th>Title:</th>
-
+      <th> Title</th>
     </tr>
     <tr th:each="post : ${getAllPosts}">
-      <td><span th:text="${post.title}"></span>
+
+      <!--<td  th:text="${post.title}"></td>-->
+
+      <td>
+
+        <a th:href="'/show-post/' +${post.id}"
+           th:text="${post.title}"></a>
       </td>
+
+
+
+      <!--<td> <a th:href="/admin/kursy/detale/" > aaaa</a>-->
+
+
+      <!--</td>-->
+
+
     </tr>
   </table>
 
