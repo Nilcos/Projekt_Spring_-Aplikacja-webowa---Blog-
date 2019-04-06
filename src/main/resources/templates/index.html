@@ -46,7 +46,7 @@
             <a class="nav-link" th:href="@{/}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/addpost}">Sample Post</a>
+            <a class="nav-link" th:href="@{/add-post}">Sample Post</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/register}">Registration</a>
@@ -78,42 +78,16 @@
   <h1 th:align="center">Available posts: </h1>
   <p>
 
-
-
-
-  <table id="tabelaFormat" border="solid">
+  <table th:class="table">
     <tr>
-      <th> Title</th>
+      <th>Title:</th>
+
     </tr>
     <tr th:each="post : ${getAllPosts}">
-
-     <!--<td  th:text="${post.title}"></td>-->
-
-      <td>
-
-        <a th:href="'/show-post/' +${post.id}"
-           th:text="${post.title}"></a>
+      <td><span th:text="${post.title}"></span>
       </td>
-
-
-
-     <!--<td> <a th:href="/admin/kursy/detale/" > aaaa</a>-->
-
-
-     <!--</td>-->
-
-
     </tr>
   </table>
-
-
-
-
-
-
-
-
-
 
   </p>
   <h1 th:align="center">Bag of categories</h1>
@@ -121,10 +95,6 @@
   <h1 th:align="center">Recent posts</h1>
   <p>...</p>
   <hr>
-
-
-
-
 
   <!-- Footer -->
   <footer>
