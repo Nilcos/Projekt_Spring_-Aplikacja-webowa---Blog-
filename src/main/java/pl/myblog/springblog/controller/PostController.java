@@ -94,21 +94,51 @@ public class PostController {
     }
 
     @GetMapping("/delete-post/{id}")
-    public String deletePost(@PathVariable long id, Model model) {
+    public String deletePost(@PathVariable long id, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
         postService.deletePost(id);
         model.addAttribute("postList", postService.getAllPosts());
         return "index";
     }
 
     @GetMapping("/edit-post/{id}")
-    public String editPost(@PathVariable long id, Model model) {
+    public String editPost(@PathVariable long id, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
         Optional<Post> post = postService.getOnePost(id);
         model.addAttribute("post", post.get());
         return "post";
     }
 
     @GetMapping("/show-post/{id}")
-    public String showPost(@PathVariable long id, Model model) {
+    public String showPost(@PathVariable long id, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
 
@@ -119,7 +149,17 @@ public class PostController {
     }
 
     @GetMapping("/delete-comment/{id}")
-    public String deleteComment(@PathVariable long id) {
+    public String deleteComment(@PathVariable long id, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
         Post post = commentService.getPostByCommentId(id);
         commentService.deleteComment(id);
 //        model.addAttribute("post", post);
@@ -128,7 +168,17 @@ public class PostController {
     }
 
     @GetMapping("/edit-comment/{id}")
-    public String editComment(@PathVariable long id, Model model) {
+    public String editComment(@PathVariable long id, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
         Post post = commentService.getPostByCommentId(id);
         model.addAttribute("comment", commentService.getComment(id));
         return "redirect:/show-post/" + post.getId();
@@ -136,6 +186,15 @@ public class PostController {
 
     @PostMapping("/save-comment")
     public String saveComment(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
 
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
