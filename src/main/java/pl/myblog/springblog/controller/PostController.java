@@ -90,7 +90,7 @@ public class PostController {
     public String editPost(@PathVariable long id, Model model) {
 
         Optional<Post> post = postService.getOnePost(id);
-        model.addAttribute("post", post);
+        model.addAttribute("post", post.get());
         return "index";
     }
 
