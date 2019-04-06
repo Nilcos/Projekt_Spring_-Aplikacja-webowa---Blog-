@@ -23,7 +23,7 @@ public class ContactController {
     @GetMapping("/contact")
     public String contact(Model model) {
         model.addAttribute("contact", new Contact());
-        return "contact";
+        return "contactForm";
     }
 
     @PostMapping("/send")
@@ -32,10 +32,11 @@ public class ContactController {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
             model.addAttribute("contact", new Contact());
-            return "contact";
+            return "index";
         } else {
             contactService.addToDB(contact);
             return "index";
+            //aaaa
         }
 
 
