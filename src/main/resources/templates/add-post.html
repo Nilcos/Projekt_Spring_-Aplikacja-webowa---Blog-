@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
 
     <title>Addpost</title>
 
@@ -75,44 +76,36 @@
 </header>
 
 <!-- Main Content -->
-<p>
+<div class="content">
 
-<form th:if="${postAdding}" th:action="@{/savepost}" method="post" th:object="${post}">
-
-<label for="title">Title: </label>
-<input id="title" type="text" th:field="*{title}"/><br><br>
-
-<label for="content">Content: </label>
-<textarea id="content" cols="50" rows="10" th:field="*{content}"></textarea><br><br>
-
-    <span th:text="${auth.getPrincipal().getUsername()}"></span><br><br>
-    <input id="id" type="hidden" th:field="*{id}">
-
-<input type="hidden" th:field="*{id}"/>
-<input type="submit" value="send"/><br><br>
-<input type="reset" value="clear"><br><br>
-</form>
-
-<form th:if="${postEditing}" th:action="@{/saveeditedpost}" method="post" th:object="${post}">
-
-    <label for="titleEditing">Title: </label>
-    <input id="titleEditing" type="text" th:field="*{title}"/><br><br>
-
-    <label for="contentEditing">Content: </label>
-    <textarea id="contentEditing" cols="50" rows="10" th:field="*{content}"></textarea><br><br>
-
-    <span th:text="${post.user.email}"></span><br><br>
-    <!--<input id="id" type="hidden" th:field="*{id}">-->
-
-    <input type="hidden" th:field="*{user}">
-    <input type="hidden" th:field="*{date}">
-    <input type="hidden" th:field="*{id}"/>
-    <input type="submit" value="send"/><br><br>
-    <input type="reset" value="clear"><br><br>
-</form>
+    <div id='container'>
 
 
-</p>
+        <form th:action="@{/savepost}" method="post" th:object="${post}">
+
+            <!--<label for="subject">Subject</label>-->
+            <select th:name ="subject" id="subject">
+                <option th:each="element : ${subject}" th:value="${element.id}" th:text="${element.postSubject}"></option>
+            </select>
+
+            <br><br>
+
+            <!--<label for="title">Title: </label>-->
+            <input id="title" type="text" th:field="*{title}" placeholder="Enter the title"/><br><br>
+
+            <!--<label for="content">Content: </label>-->
+            <input id="content" type="text" th:field="*{content} " placeholder="Enter the content"><br><br>
+
+            <input type="text" th:value="${auth.getPrincipal().getUsername()}" readonly><br><br>
+            <input id="id" type="hidden" th:field="*{id}">
+
+            <input type="hidden" th:field="*{id}"/>
+            <input type="submit" value="send"/><br><br>
+            <input type="reset" value="clear"><br><br>
+        </form>
+
+    </div>
+</div>
 <hr>
 
 <!-- Footer -->
