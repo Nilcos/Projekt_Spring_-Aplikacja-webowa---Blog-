@@ -75,6 +75,24 @@
   </header>
 
   <!-- Main Content -->
+  <h1 th:align="center">Posts: </h1>
+  <p>
+
+  <table th:class="table">
+    <tr>
+      <th>Title::</th>
+
+    </tr>
+    <tr th:each="post : ${getAllPosts}">
+      <td><span th:text="${course.name}"></span></td>
+
+
+<!--      <td><a th:href="@{'/admin/edytuj-kurs/' + ${course.id}}" method="get">edytuj</a></td>-->
+
+    </tr>
+  </table>
+
+  </p>
   <h1 th:align="center">Bag of categories</h1>
   <p>...</p>
   <h1 th:align="center">Recent posts</h1>

@@ -36,7 +36,6 @@ public class ContactController {
         } else {
             contactService.addToDB(contact);
             return "index";
-            //aaaa
         }
 
 
