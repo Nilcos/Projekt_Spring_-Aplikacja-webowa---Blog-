@@ -13,7 +13,7 @@ public class ErrorPageController implements ErrorController {
     }
     @GetMapping("/error")
     public String errorPage(Model model){
-        model.addAttribute("info", "Nie ma takiego adresu w naszej domenie.");
+        model.addAttribute("info", "Nie ma takiego adresu Ziomki w naszej domenie.");
         return "errorPage";
     }
     @GetMapping("/errorLogin")
