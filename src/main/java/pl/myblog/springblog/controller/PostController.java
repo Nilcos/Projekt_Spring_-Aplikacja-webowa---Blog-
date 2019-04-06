@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.myblog.springblog.model.Post;
+import pl.myblog.springblog.service.CommentService;
 import pl.myblog.springblog.service.PostService;
 import pl.myblog.springblog.service.UserService;
 
@@ -25,6 +26,9 @@ public class PostController {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    CommentService commentService;
 
     @Autowired
     public PostController(UserService userService) {
@@ -84,15 +88,15 @@ public class PostController {
 
     @GetMapping("/edit-post/{id}")
     public String editPost(@PathVariable long id, Model model) {
-        Post post = postService.getPost(id);
+
+        Optional<Post> post = postService.getOnePost(id);
         model.addAttribute("post", post);
         return "index";
     }
 
     @GetMapping("/show-post/{id}")
     public String showPost(@PathVariable long id, Model model) {
-        Post post = postService.getPost(id);
-        model.addAttribute("post", post);
+        model.addAttribute("post", postService.getPost(id));
         return "index";
     }
 }
