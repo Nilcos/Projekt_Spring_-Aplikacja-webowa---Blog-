@@ -34,5 +34,11 @@ public class Comment {
     @Column(name = "userUnloggedName")
     private String name;
 
+    @Column(name = "postId")
+    @ManyToOne
+    private Post postId;
+
+
+
     private LocalDateTime date;
 }
