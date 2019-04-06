@@ -32,7 +32,6 @@ public class Post {
     private LocalDateTime date;
 
     @OneToMany
-    @JoinColumn(name = "comments_id")
     private List<Comment> comments;
 
 
