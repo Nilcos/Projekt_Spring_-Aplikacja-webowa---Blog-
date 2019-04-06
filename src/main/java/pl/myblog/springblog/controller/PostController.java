@@ -71,6 +71,15 @@ public class PostController {
     @PostMapping("/save-post")
     public String savePost(@Valid @ModelAttribute Post post, BindingResult result, Model model, Authentication auth) {
 
+        model.addAttribute("auth", auth);
+
+        if (auth != null) {
+            model.addAttribute("isAdmin", userService.isAdmin(auth));
+            model.addAttribute("user", userService.getUserById(auth));
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
+
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
