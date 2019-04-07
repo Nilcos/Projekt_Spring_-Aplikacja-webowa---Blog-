@@ -174,6 +174,7 @@ public class PostController {
     public String showPost(@PathVariable long id, Model model, Authentication auth) {
 
         model.addAttribute("auth", auth);
+        model.addAttribute("commentAdding", true);
 
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
@@ -213,6 +214,7 @@ public class PostController {
     public String editComment(@PathVariable long id, Model model, Authentication auth) {
 
         model.addAttribute("auth", auth);
+        model.addAttribute("commentEditing", true);
 
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));

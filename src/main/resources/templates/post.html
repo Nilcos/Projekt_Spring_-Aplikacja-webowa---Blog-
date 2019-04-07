@@ -107,7 +107,8 @@
 
 
 
-<h1 th:align="center">Add Comment</h1>
+<h1 th:if="${commentAdding}" th:align="center">Add Comment</h1>
+<h1 th:if="${commentEditing}" th:align="center">Edit Comment</h1>
 
 <div class="content">
 
