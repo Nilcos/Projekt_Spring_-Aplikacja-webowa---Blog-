@@ -146,7 +146,7 @@ public class PostController {
 
         model.addAttribute("auth", auth);
         model.addAttribute("postEditing", true);
-
+        model.addAttribute("subject",subjectService.getAllCourses());
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
             model.addAttribute("user", userService.getUserById(auth));
