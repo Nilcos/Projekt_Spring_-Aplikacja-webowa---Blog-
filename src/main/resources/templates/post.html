@@ -91,6 +91,10 @@
     <tr th:each="comment : ${commentList}">
 
         <td th:text="${comment.userComment}"></td>
+        <td>
+            <a th:href="@{'/edit-comment/' + ${comment.id}}" method="get">Edit</a>
+            <a th:href="@{'/delete-comment/' + ${comment.id}}" method="get">Delete</a>
+        </td>
 
     </tr>
 </table>
