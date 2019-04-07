@@ -92,7 +92,10 @@ public class PostController {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
             model.addAttribute("post", post);
+            model.addAttribute("postAdding", true);
+            model.addAttribute("subject",subjectService.getAllCourses());
             return "add-post";
+
         } else {
 
             postService.addToDB(post, userService.getUserById(auth));
@@ -117,6 +120,8 @@ public class PostController {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
             model.addAttribute("post", post);
+            model.addAttribute("postEditing", true);
+            model.addAttribute("subject",subjectService.getAllCourses());
             return "add-post";
         } else {
             postService.addEditedToDB(post);
