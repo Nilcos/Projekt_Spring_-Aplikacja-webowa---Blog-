@@ -31,7 +31,7 @@ public class ContactController {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
-            model.addAttribute("contact", new Contact());
+            model.addAttribute("contact", contact);
             return "contactForm";
         } else {
             contactService.addToDB(contact);

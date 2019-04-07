@@ -91,7 +91,7 @@ public class PostController {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
-            model.addAttribute("post", new Post());
+            model.addAttribute("post", post);
             return "add-post";
         } else {
 
@@ -116,6 +116,7 @@ public class PostController {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+            model.addAttribute("post", post);
             return "add-post";
         } else {
             postService.addEditedToDB(post);
@@ -123,6 +124,11 @@ public class PostController {
             return "index";
         }
     }
+
+
+
+
+
 
     @GetMapping("/deletepost/{id}")
     public String deletePost(@PathVariable long id, Model model, Authentication auth) {
@@ -212,7 +218,10 @@ public class PostController {
 
         Post post = commentService.getPostByCommentId(id);
         model.addAttribute("comment", commentService.getComment(id));
-        return "redirect:/show-post/" + post.getId();
+        model.addAttribute("post", post);
+        model.addAttribute("commentList",commentService.getAllCommentbyPostId(post));
+//        return "redirect:/show-post/" + post.getId();
+        return "post";
     }
 
     @PostMapping("/savecomment/{id}")
