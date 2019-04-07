@@ -92,12 +92,23 @@
             <br><br>
 
             <!--<label for="title">Title: </label>-->
-            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Podaj e-mail</p>
-            <input id="title" type="text" th:field="*{title}" placeholder="Enter the title"/><br><br>
+            <!--<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Podaj e-mail</p>-->
+            <!--<input id="title" type="text" th:field="*{title}" placeholder="Enter the title"/>-->
+
+            <label for="title">Title</label>
+            <input th:class="${#fields.hasErrors('title')}? 'filedError'" id="title" type="text"
+                   th:field="*{title}"
+                   placeholder="Type the Title of Your Article"/><br><br>
 
             <!--<label for="content">Content: </label>-->
-            <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Podaj e-mail</p>
-            <input id="content" type="text" th:field="*{content} " placeholder="Enter the content"><br><br>
+            <!--<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Podaj e-mail</p>-->
+            <!--<input id="content" type="text" th:field="*{content} " placeholder="Enter the content">-->
+
+
+            <label for="content">Content</label>
+            <input th:class="${#fields.hasErrors('content')}? 'filedError'" id="content" type="text"
+                   th:field="*{content}"
+                   placeholder="Type the Article content"/><br><br>
 
 
             <input type="text" th:value="${auth.getPrincipal().getUsername()}" readonly><br><br>
@@ -111,12 +122,24 @@
         <form th:if="${postEditing}" th:action="@{/saveeditedpost}" method="post" th:object="${post}">
 
             <!--<label for="titleEditing">Title: </label>-->
-            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
-            <input id="titleEditing" type="text" th:field="*{title}"/><br><br>
+            <!--<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>-->
+            <!--<input id="titleEditing" type="text" th:field="*{title}"/>-->
+
+            <label for="titleEditing">Title</label>
+            <input th:class="${#fields.hasErrors('title')}? 'filedError'" id="titleEditing" type="text"
+                   th:field="*{title}"
+                   placeholder="Type the Title of Your Article"/>
+            <br><br>
 
             <!--<label for="contentEditing">Content: </label>-->
-            <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
-            <input type="text" id="contentEditing"  th:field="*{content}"><br><br>
+            <!--<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>-->
+            <!--<input type="text" id="contentEditing"  th:field="*{content}">-->
+
+            <label for="contentEditing">Content</label>
+            <input th:class="${#fields.hasErrors('content')}? 'filedError'" id="contentEditing" type="text"
+                   th:field="*{content}"
+                   placeholder="Type the Article content"/>
+            <br><br>
 
             <input type="text" th:value="${post.user.email}" readonly>
 
