@@ -82,13 +82,25 @@
 
 <form th:action="@{/send}" method="post" th:object="${contact}">
 
-<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Podaj e-mail</p>
-<!--<label for="email">e-mail: </label>-->
-<input id="email" type="text" th:field="*{email}" placeholder="Enter the E-mail"/><br><br>
+<!--<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Podaj e-mail</p>-->
+<!--&lt;!&ndash;<label for="email">e-mail: </label>&ndash;&gt;-->
+<!--<input id="email" type="text" th:field="*{email}" placeholder="Enter the E-mail"/>-->
 
-<p th:if="${#fields.hasErrors('message')}" th:errors="*{message}" >Wpisz wiadomość: </p>
+    <label for="email">E-mail</label>
+    <input th:class="${#fields.hasErrors('email')}? 'filedError'" id="email" type="text"
+           th:field="*{email}"
+           placeholder="Type your E-mail"/>
+
+    <br><br>
+
+<!--<p th:if="${#fields.hasErrors('message')}" th:errors="*{message}" >Wpisz wiadomość: </p>-->
 <!--<label for="message">message: </label>-->
-<input type="text" id="message"  th:field="*{message}" placeholder="Enter the message"><br><br>
+<!--<input th:class="${#fields.hasErrors('message')}? 'filedError'" type="text" id="message"  th:field="*{message}" placeholder="Enter the message"><br><br>-->
+
+    <label for="message">Message</label>
+    <input th:class="${#fields.hasErrors('message')}? 'filedError'" id="message" type="text"
+           th:field="*{message}"
+           placeholder="Type your message"/>
 
 <input type="submit" value="wyslij"/><br><br>
 <input type="reset" value="wyczyść"><br><br>
