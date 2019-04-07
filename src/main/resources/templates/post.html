@@ -117,13 +117,36 @@
 <form th:align="center" th:action="@{'/savecomment/'+${post.id}}" method="post" th:object="${comment}">
 
 
-    <input type="text" id="comment"  th:field="*{userComment}" placeholder="Enter the comment"><br><br>
+
+    <!--<input  type="text" id="comment"  th:field="*{userComment}" placeholder="Enter the comment"><br><br>-->
 
     <input id="id" type="hidden" th:field="*{id}">
 
+    <input th:class="${#fields.hasErrors('userComment')}? 'filedError'" id="userComment" type="text"
+           th:field="*{userComment}"
+           placeholder="Type the Article content"/>
+
 
     <input th:if="${auth != null}" th:value="${auth.getPrincipal().getUsername()} " th:name="name" readonly type="text">
-    <input th:if="${auth == null}"  th:field="*{name}" type="text"  placeholder="Enter your name">
+
+
+    <input th:class="${#fields.hasErrors('name')}? 'filedError'" th:if="${auth == null}"  th:field="*{name}" type="text"  placeholder="Enter your name">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <br><br>

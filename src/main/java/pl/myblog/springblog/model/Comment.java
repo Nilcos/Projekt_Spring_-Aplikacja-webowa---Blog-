@@ -31,6 +31,7 @@ public class Comment {
 
 
     @Column(name = "userUnloggedName")
+    @NotEmpty(message = "Pole wymaga ciągu znaków!")
     private String name;
 
     @ManyToOne
