@@ -85,7 +85,7 @@
         <form  th:if="${postAdding}" th:action="@{/savepost}" method="post" th:object="${post}">
 
             <!--<label for="subject">Subject</label>-->
-            <select th:name ="subject" id="subject">
+            <select th:name ="subject" id="subject" style="background-color: silver">
                 <option th:each="element : ${subject}" th:value="${element.id}" th:text="${element.postSubject}"></option>
             </select>
 
