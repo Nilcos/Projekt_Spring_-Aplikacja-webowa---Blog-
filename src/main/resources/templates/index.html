@@ -90,6 +90,7 @@
     <th> Date</th>
     <!--<th> Subject</th>-->
     <th> Author</th>
+    <th th:if="${isAdmin}">Options</th>
   </tr>
   <tr th:each="post : ${getAllPosts}">
 
@@ -109,7 +110,7 @@
     <td>
       <span th:text="${post.user.name} + ' ' + ${post.user.lastname}"></span>
     </td>
-    <td th:if="${auth != null}">
+    <td th:if="${isAdmin}">
       <a th:href="@{'/editpost/' + ${post.id}}" method="get">Edit</a>
       <a th:href="@{'/deletepost/' + ${post.id}}" method="get">Delete</a>
     </td>
