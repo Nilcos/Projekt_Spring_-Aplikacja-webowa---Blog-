@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th=”http://www.thymeleaf.org”>
+<html xmlns:th=”http://www.thymeleaf.org” xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -109,7 +109,7 @@
     <td>
       <span th:text="${post.user.name} + ' ' + ${post.user.lastname}"></span>
     </td>
-    <td>
+    <td th:if="${auth != null}">
       <a th:href="@{'/editpost/' + ${post.id}}" method="get">Edit</a>
       <a th:href="@{'/deletepost/' + ${post.id}}" method="get">Delete</a>
     </td>
