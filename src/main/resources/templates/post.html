@@ -92,7 +92,7 @@
     <tr th:each="comment : ${commentList}">
 
         <td th:text="${comment.userComment}"></td>
-        <td>
+        <td th:if="${isAdmin}">
             <a th:href="@{'/edit-comment/' + ${comment.id}}" method="get">Edit</a>
             <a th:href="@{'/delete-comment/' + ${comment.id}}" method="get">Delete</a>
         </td>
